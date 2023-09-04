@@ -1,0 +1,22 @@
+
+name: 'Inject SSH Key'
+description: 'Configures CI environment to use the private SSH key from a given secret'
+inputs:
+  private-key:
+    description: 'Private SSH key to configure'
+    required: true
+  host-name:
+    description: 'Hostname to confugre in known_hosts, defaults to github.com'
+    required: false
+    default: 'github.com'
+runs:
+  using: "composite"
+  steps:
+    - name: write-ssh-key
+      shell: bash
+      run: |
+        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        echo "${{ inputs.private-key }}" > ~/.ssh/id_rsa
+        host='${{ inputs.host-name }}'
+        hosts="$(dig +short "$host" | grep -v '\.$' | sed -z 's|\n|,|g')$host"
+        ssh-keyscan -H "$hosts" > ~/.ssh/known_hosts
