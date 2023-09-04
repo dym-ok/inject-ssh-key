@@ -1,0 +1,23 @@
+name: test inject-ssh-key
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Inject SSH Key
+        uses: ./
+        with:
+          private-key: ${{ secrets.GIT_KEY }}
+      - name: Test GIT Access
+        run: git clone git@github.com:dym-ok/swisscards-ynnabe.git --depth 1 src
