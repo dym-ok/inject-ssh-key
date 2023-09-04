@@ -14,3 +14,5 @@ Subsequent steps can use SSH client or Git with git+ssh protocol with the
 
 `host-name` input is optional and has `github.com` as the default values.
 Every IP address it resolves to is added to the `~/.ssh/known_hosts`.
+
+**Note**: this action requires `dig` which is part of the `dnsutils` package.

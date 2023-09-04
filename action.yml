@@ -1,4 +1,3 @@
-
 name: 'Inject SSH Key'
 description: 'Configures CI environment to use the private SSH key from a given secret'
 inputs:
@@ -6,7 +5,7 @@ inputs:
     description: 'Private SSH key to configure'
     required: true
   host-name:
-    description: 'Hostname to confugre in known_hosts, defaults to github.com'
+    description: 'Hostname to configure in ~/.ssh/known_hosts, defaults to github.com'
     required: false
     default: 'github.com'
 runs:
@@ -20,3 +19,7 @@ runs:
         host='${{ inputs.host-name }}'
         hosts="$(dig +short "$host" | grep -v '\.$' | sed -z 's|\n|,|g')$host"
         ssh-keyscan -H "$hosts" > ~/.ssh/known_hosts
+
+branding:
+  icon: 'log-in'
+  color: 'purple'
