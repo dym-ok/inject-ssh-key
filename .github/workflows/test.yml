@@ -18,6 +18,6 @@ jobs:
       - name: Inject SSH Key
         uses: ./
         with:
-          private-key: ${{ secrets.GIT_KEY }}
+          private-key:  "asdfasd"
       - name: Test GIT Access
         run: git clone git@github.com:dym-ok/swisscards-ynnabe.git --depth 1 src
