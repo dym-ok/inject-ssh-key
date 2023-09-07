@@ -1,5 +1,7 @@
 # Inject SSH Key GitHub Action
 
+[![test inject-ssh-key](https://github.com/dym-ok/inject-ssh-key/actions/workflows/test.yml/badge.svg)](https://github.com/dym-ok/inject-ssh-key/actions/workflows/test.yml)
+
 This GitHub action configures an SSH key on a GitHub runner.
 ```yaml
 - name: Inject SSH Key
